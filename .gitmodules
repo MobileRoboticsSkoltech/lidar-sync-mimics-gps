@@ -1,0 +1,7 @@
+[submodule "serial"]
+	path = ros_ws/serial
+	url = https://github.com/wjwwood/serial.git
+[submodule "velodyne"]
+	path = ros_ws/velodyne
+	url = https://github.com/anastasiia-kornilova/velodyne.git
+	branch = mrob-patches
