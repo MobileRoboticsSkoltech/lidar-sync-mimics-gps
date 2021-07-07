@@ -1,4 +1,7 @@
 # [Open-Source LiDAR Time Synchronization System by Mimicking GPS-clock](https://arxiv.org/abs/2107.02625)<sup>1</sup>
+<p align="center">
+  <img src="https://github.com/MobileRoboticsSkoltech/lidar-sync-mimics-gps/blob/main/block_scheme.png">
+</p>
 
 To clone the repository with proper submodules utilize `--recurse-submodules` argument:  
 
