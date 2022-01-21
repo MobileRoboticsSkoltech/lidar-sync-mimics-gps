@@ -1,2 +1,8 @@
 ros_ws/build
 ros_ws/devel
+firmware/.settings/
+firmware/Debug/
+firmware/.cproject
+firmware/.mxproject
+.metadata/
+*RemoteSystemsTempFiles/
