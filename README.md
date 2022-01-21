@@ -33,6 +33,9 @@ IMU ROS driver is developed from scratch and produces [sensor_msgs/Imu](http://d
 ## In case of questions
 Any question — raise an issue, please.
 
+## WIP
+- adding connecting diagram
+
 <sup>1</sup> :
 
 ```
