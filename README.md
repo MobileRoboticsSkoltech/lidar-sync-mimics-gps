@@ -30,6 +30,8 @@ The software consists of ROS drivers for handling Lidar and IMU data and precise
 Lidar ROS driver is based on common ROS package with our patch for hardware timestamping by mimicking GPS-clock.  
 IMU ROS driver is developed from scratch and produces [sensor_msgs/Imu](http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/Imu.html) messages.
 
+## In case of questions
+Any question — raise an issue, please.
 
 <sup>1</sup> :
 
