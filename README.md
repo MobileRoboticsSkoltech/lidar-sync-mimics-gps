@@ -23,7 +23,12 @@ The STM32 MCU-platform is chosen as it meets all the requirements described in t
 The MCU firmware aimed on IMU-data gathering and LiDAR-to-IMU time synchronization. It is designed using STM32CubeIDE for Linux. 
 
 The MCU outputs IMU data as are plain ASCII strings that can be used independently on ROS and may be parsed by another data recording/processing API. These strings contain timestamp (minutes, seconds, subseconds (1/25600000 of second) and IMU data (3D-angular velocity, temperature, 3D-acceleration) with format:  
-`"i0%02x %02x %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x\n"`
+```
+"i0%02x %02x %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x\n"
+ \/\__/ \__/ \__/ \_______/ \____________/ \__/ \____________/
+ | hour mins secs  subsecs     3D gyro     temp     3D acc
+IMU0 identifier for compatibility with other projects
+```
 
 ## Software
 The software consists of ROS drivers for handling Lidar and IMU data and precise timestamping.
