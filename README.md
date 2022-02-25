@@ -15,13 +15,16 @@ To clone the repository with proper submodules utilize `--recurse-submodules` ar
   <tr> <td>Lidar</td> <td>Velodyne VLP-16</td> </tr>
   <tr> <td>MCU-platform</td> <td>STM32F4DISCOVERY</td> </tr>
   <tr> <td>IMU</td> <td>MPU-9150</td> </tr>
+  <tr> <td>UART-to-USB stick</td> <td>any</td> </tr>
 </table>
 
 The STM32 MCU-platform is chosen as it meets all the requirements described in the paper. The IMU is fed by external MCU reference clock for data rate stability.
 
 ## Firmware
 The MCU firmware aimed on IMU-data gathering and LiDAR-to-IMU time synchronization. It is designed using STM32CubeIDE for Linux. 
+The main source code is placed in [main.c](https://github.com/MobileRoboticsSkoltech/lidar-sync-mimics-gps/blob/main/firmware/Core/Src/main.c) while the other setups are stored in [firmware.ioc](https://github.com/MobileRoboticsSkoltech/lidar-sync-mimics-gps/blob/main/firmware/firmware.ioc) and setup through the IDE GUI. It means there is no need to edit other source files except two mentioned.
 
+## IMU data format
 The MCU outputs IMU data as are plain ASCII strings that can be used independently on ROS and may be parsed by another data recording/processing API. These strings contain timestamp (minutes, seconds, subseconds (1/25600000 of second) and IMU data (3D-angular velocity, temperature, 3D-acceleration) with format:  
 ```
 "i0%02x %02x %04x %04x %04x %04x %04x %04x %04x %04x %04x %04x\n"
