@@ -10,12 +10,18 @@ To clone the repository with proper submodules utilize `--recurse-submodules` ar
 
 `git clone --recurse-submodules https://github.com/MobileRoboticsSkoltech/lidar-sync-mimics-gps.git`
 
+## System requirements
+The project was tested using:
+- Ubuntu 18.06
+- ROS Melodic Morenia
+- STM32CubeIDE for Linux
+
 ## Hardware
 <table>
   <tr> <td>Lidar</td> <td>Velodyne VLP-16</td> </tr>
-  <tr> <td>MCU-platform</td> <td>STM32F4DISCOVERY</td> </tr>
+  <tr> <td>MCU-platform with built-in programmer</td> <td>STM32F4DISCOVERY</td> </tr>
   <tr> <td>IMU</td> <td>MPU-9150</td> </tr>
-  <tr> <td>UART-to-USB stick</td> <td>any</td> </tr>
+  <tr> <td>UART-to-USB stick</td> <td>any, we used stick based on CP2102 stone</td> </tr>
 </table>
 
 The STM32 MCU-platform is chosen as it meets all the requirements described in the paper. The IMU is fed by external MCU reference clock for data rate stability.
