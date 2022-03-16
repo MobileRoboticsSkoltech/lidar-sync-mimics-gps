@@ -46,9 +46,6 @@ The software consists of ROS drivers for handling Lidar and IMU data and precise
 Lidar ROS driver is based on common ROS package with our patch for hardware timestamping by mimicking GPS-clock.  
 IMU ROS driver is developed from scratch and produces [sensor_msgs/Imu](http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/Imu.html) messages.
 
-## In case of questions
-Any question — raise an issue, please.
-
 ## Wiring
 
 <table>
@@ -95,6 +92,10 @@ LOW---- ───┘         └────┘       └──────     
 ```
 Single Schmitt-trigger inverter [SN74LVC1G14](https://www.ti.com/product/SN74LVC1G14) is a good choice for that purpose, we used it in a [board](https://www.chipdip.ru/product/rdc2-0015a).  
 Googling of _schmitt inverter_, _74HC14_ can help.
+
+## In case of questions
+Any question — raise an issue, please.
+
 
 <sup>1</sup> :
 
