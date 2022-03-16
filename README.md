@@ -22,6 +22,7 @@ The project was tested using:
   <tr> <td>MCU-platform with built-in programmer</td> <td>STM32F4DISCOVERY</td> </tr>
   <tr> <td>IMU</td> <td>MPU-9150</td> </tr>
   <tr> <td>UART-to-USB stick</td> <td>any, we used stick based on CP2102 stone</td> </tr>
+  <tr> <td>Signal inverter</td> <td>any, see [Note about MCU to Lidar data signal inverter](https://github.com/MobileRoboticsSkoltech/lidar-sync-mimics-gps#note-about-mcu-to-lidar-data-signal-inverter) below</td> </tr>
 </table>
 
 The STM32 MCU-platform is chosen as it meets all the requirements described in the paper. The IMU is fed by external MCU reference clock for data rate stability.
@@ -70,7 +71,22 @@ Any question — raise an issue, please.
 </table>
 
 ## Note about MCU to Lidar data signal inverter
-TODO
+Page 43 of section 7.4.3 Timing and Polarity Requirements [VLP-16 User Manual](https://velodynelidar.com/wp-content/uploads/2019/12/63-9243-Rev-E-VLP-16-User-Manual.pdf) states the following:
+
+<i>The serial connection for the NMEA message follows the RS232 standard. The interface is capable of handling voltages between ±15 VDC.  
+- Low voltages are marks and represent a logical 1.
+- High voltages are spaces and represent a logical 0.
+
+The serial line idle state (MARK) is a low voltage indicating a logical 1. When the start bit is asserted, the positive voltage will be asserted representing a logical 0.</i>
+
+This means that the polarity of the input UART signal must be inverse: "1" is "Low", "0" is "High". For that case some UART transmitters can provide such a signal polarity inversion. However, UART transmitter of STM32F4 MCU cannot. To solve the issue, separate signal invertor can be utilized that simply converts UART signal to the inverse one:
+```
+HIGH---    ┌─────────┐    ┌───────┐                   ───┐         ┌────┐       ┌──────
+           │         │    │       │         ---->        │         │    │       │
+LOW---- ───┘         └────┘       └──────                └─────────┘    └───────┘
+```
+Single Schmitt-trigger inverter [SN74LVC1G14](https://www.ti.com/product/SN74LVC1G14) is a good choice for that purpose, we used it in a [board](https://www.chipdip.ru/product/rdc2-0015a).  
+Googling of _schmitt inverter_, _74HC14_ can help.
 
 ## WIP
 - adding connecting diagram
