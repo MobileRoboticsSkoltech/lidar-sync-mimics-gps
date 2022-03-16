@@ -3,7 +3,7 @@
 ___The LiDAR-to-IMU time synchronized system mimicing a GPS-supplied clock interface by a microcontroller-powered platform that provides 1 microsecond synchronization precision.___
 
 <p align="center">
-  <img src="https://github.com/MobileRoboticsSkoltech/lidar-sync-mimics-gps/blob/main/block_scheme.png">
+  <img src="block_scheme.png">
 </p>
 
 To clone the repository with proper submodules utilize `--recurse-submodules` argument:  
@@ -67,11 +67,16 @@ Any question — raise an issue, please.
   <tr> <td>PC9</td> <td>GPIO_EXTI9</td> <td>Interrupt input pin from IMU module. IMU trigger this pin when new data sample is ready</td> </tr>
   <tr> <td>PC10</td> <td>UART4_TX</td> <td>UART Transmit line to PC through UART-to-USB stick</td> </tr>
   <tr> <td>PC11</td> <td>UART4_RX</td> <td>UART Receive line from PC through UART-to-USB stick, not used</td> </tr>
-  <tr> <td>PC12</td> <td>UART5_RX</td> <td>UART Receive line from Lidar, not used</td> </tr>
-  <tr> <td>PD2</td> <td>UART5_TX</td> <td>UART Transmit MCU clock line to Lidar through signal inverter (see note below)</td> </tr>
+  <tr> <td>PC12</td> <td>UART5_TX</td> <td>UART Transmit MCU clock line to Lidar through signal inverter (see <a href="#note-about-mcu-to-lidar-data-signal-inverter">note</a> below)</td> </tr>
+  <tr> <td>PD2</td> <td>UART5_RX</td> <td>UART Receive line from Lidar, not used</td> </tr>
 </table>
 
 TIM5 (RTC) and TIM1(PPS signal generator, NMEA message transmission trigger) now share three tasks explained in the article. For optimization, only single timer can be utilized for all this tasks. However, to keep compatibility with current uasge of the firmware in ongoing projects, we do not plan to update it.
+
+Wiring result schematically should look as shown in the figure:
+<p align="center">
+  <img src="connection_diagram.png">
+</p>
 
 ## Note about MCU to Lidar data signal inverter
 Page 43 of section 7.4.3 Timing and Polarity Requirements [VLP-16 User Manual](https://velodynelidar.com/wp-content/uploads/2019/12/63-9243-Rev-E-VLP-16-User-Manual.pdf) states the following:
@@ -90,9 +95,6 @@ LOW---- ───┘         └────┘       └──────     
 ```
 Single Schmitt-trigger inverter [SN74LVC1G14](https://www.ti.com/product/SN74LVC1G14) is a good choice for that purpose, we used it in a [board](https://www.chipdip.ru/product/rdc2-0015a).  
 Googling of _schmitt inverter_, _74HC14_ can help.
-
-## WIP
-- adding connecting diagram
 
 <sup>1</sup> :
 
