@@ -57,9 +57,9 @@ Any question — raise an issue, please.
   <tr> <td>PB7</td> <td>I2C1_SDA</td> <td>I2C SDA line for IMU module data transfer</td> </tr>
   <tr> <td>PH0</td> <td>RCC_OSC_IN</td> <td>Crystal resonator connection, already connected to MCU by default</td> </tr>
   <tr> <td>PH1</td> <td>RCC_OSC_OUT</td> <td>Crystal resonator connection, already connected to MCU by default</td> </tr>
-  <tr> <td>PA0</td> <td>TIM5_CH1</td> <td>Real Time Clock, the timer that provides time counting</td> </tr>
+  <tr> <td>PA0</td> <td>TIM5_CH1</td> <td>Output compare signal, Not used</td> </tr>
   <tr> <td>PA6</td> <td>TIM3_CH1</td> <td>Reference clock source for IMU</td> </tr>
-  <tr> <td>PE9</td> <td>TIM1_CH1</td> <td>The core timer that generates PPS signal and triggers starts of time messages transmision to Lidar</td> </tr>
+  <tr> <td>PE9</td> <td>TIM1_CH1</td> <td>PPS signal output</td> </tr>
   <tr> <td>PD12</td> <td>GPIO_OUT</td> <td>Debugging LED. IMU interrupt came</td> </tr>
   <tr> <td>PD13</td> <td>GPIO_OUT</td> <td>Debugging LED. Toggling in the main loop (`while`)</td> </tr>
   <tr> <td>PD14</td> <td>GPIO_OUT</td> <td>Debugging LED. Not used</td> </tr>
@@ -70,6 +70,8 @@ Any question — raise an issue, please.
   <tr> <td>PC12</td> <td>UART5_RX</td> <td>UART Receive line from Lidar, not used</td> </tr>
   <tr> <td>PD2</td> <td>UART5_TX</td> <td>UART Transmit MCU clock line to Lidar through signal inverter (see note below)</td> </tr>
 </table>
+
+TIM5 (RTC) and TIM1(PPS signal generator, NMEA message transmission trigger) now share three tasks explained in the article. For optimization, only single timer can be utilized for all this tasks. However, to keep compatibility with current uasge of the firmware in ongoing projects, we do not plan to update it.
 
 ## Note about MCU to Lidar data signal inverter
 Page 43 of section 7.4.3 Timing and Polarity Requirements [VLP-16 User Manual](https://velodynelidar.com/wp-content/uploads/2019/12/63-9243-Rev-E-VLP-16-User-Manual.pdf) states the following:
