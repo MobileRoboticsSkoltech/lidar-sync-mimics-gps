@@ -22,7 +22,8 @@ The project was tested using:
   <tr> <td>MCU-platform with built-in programmer</td> <td>STM32F4DISCOVERY</td> </tr>
   <tr> <td>IMU</td> <td>MPU-9150</td> </tr>
   <tr> <td>UART-to-USB stick</td> <td>any, we used stick based on CP2102 stone</td> </tr>
-  <tr> <td>Signal inverter</td> <td>any, see [Note about MCU to Lidar data signal inverter](https://github.com/MobileRoboticsSkoltech/lidar-sync-mimics-gps#note-about-mcu-to-lidar-data-signal-inverter) below</td> </tr>
+  <tr> <td>Signal inverter</td> <td>any, see 
+<a href="#note-about-mcu-to-lidar-data-signal-inverter">Note about MCU to Lidar data signal inverter</a> below</td> </tr>
 </table>
 
 The STM32 MCU-platform is chosen as it meets all the requirements described in the paper. The IMU is fed by external MCU reference clock for data rate stability.
